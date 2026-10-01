@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Selamat Ulang Tahun, Semestaku! ❤️✨</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- JS Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        :root {
+            --primary-glow: #ff2a75;
+            --secondary-glow: #8a2be2;
+            --accent-gold: #ffd700;
+            --bg-gradient-1: #090314;
+            --bg-gradient-2: #180829;
+            --card-bg: rgba(255, 255, 255, 0.07);
+            --card-border: rgba(255, 255, 255, 0.18);
+            --text-main: #ffffff;
+        }
+
+        /* Theme Variations */
+        body.theme-galaxy {
+            --primary-glow: #e056fd;
+            --secondary-glow: #686de0;
+            --accent-gold: #70a1ff;
+            --bg-gradient-1: #050515;
+            --bg-gradient-2: #12002b;
+        }
+
+        body.theme-rose {
+            --primary-glow: #ff4757;
+            --secondary-glow: #ff6b81;
+            --accent-gold: #ffa502;
+            --bg-gradient-1: #1e030b;
+            --bg-gradient-2: #3a081a;
+        }
+
+        body.theme-gold {
+            --primary-glow: #d4af37;
+            --secondary-glow: #f39c12;
+            --accent-gold: #ffffff;
+            --bg-gradient-1: #110e05;
+            --bg-gradient-2: #281f08;
+        }
+
+        body.theme-cyberpunk {
+            --primary-glow: #00f2fe;
+            --secondary-glow: #4facfe;
+            --accent-gold: #ff007f;
+            --bg-gradient-1: #03001e;
+            --bg-gradient-2: #7303c0;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at center, var(--bg-gradient-2), var(--bg-gradient-1));
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+            transition: background 0.8s ease, color 0.8s ease;
+        }
+
+        .font-serif-royal {
+            font-family: 'Cinzel', serif;
+        }
+
+        .font-cursive {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border-radius: 24px;
+        }
+
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-btn:hover, .glass-btn:active {
+            background: var(--primary-glow);
+            box-shadow: 0 0 25px var(--primary-glow);
+            transform: translateY(-2px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 15px var(--primary-glow), 0 0 30px var(--secondary-glow);
+        }
+
+        .text-gold-glow {
+            text-shadow: 0 0 10px var(--accent-gold);
+        }
+
+        /* Animated Glowing Borders */
+        .glow-box {
+            position: relative;
+        }
+
+        .glow-box::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, var(--primary-glow), var(--secondary-glow), var(--accent-gold), var(--primary-glow));
+            background-size: 400%;
+            border-radius: 26px;
+            z-index: -1;
+            filter: blur(8px);
+            animation: glowingBorder 12s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes glowingBorder {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-glow);
+            border-radius: 10px;
+        }
+
+        /* 3D Flip Card */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .preserve-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .flipped {
+            transform: rotateY(180deg);
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        /* Cake Candle Animations */
+        .flame {
+            background: radial-gradient(ellipse at bottom, #f00 0%, #f90 60%, #fff 100%);
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 15px #f00, 0 0 25px #f90;
+            animation: flicker 0.1s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-2deg); opacity: 0.9; }
+            100% { transform: scale(1.15) rotate(2deg); opacity: 1; }
+        }
+
+        /* Floating Animation */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        /* Audio Visualizer Bars */
+        .bar-anim {
+            animation: jumpBar 0.8s ease-in-out infinite alternate;
+        }
+        @keyframes jumpBar {
+            0% { height: 4px; }
+            100% { height: 24px; }
+        }
+
+        /* AI Chatbot Floating Window Styles */
+        .ai-chat-window {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 330px;
+            height: 430px;
+            background: rgba(15, 10, 30, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--primary-glow);
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 42, 117, 0.2);
+            display: flex;
+            flex-direction: column;
+            z-index: 9999;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .ai-chat-window.hidden-chat {
+            opacity: 0;
+            transform: translateY(30px) scale(0.85);
+            pointer-events: none;
+        }
+
+        .ai-chat-header {
+            background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow));
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ai-chat-body {
+            flex: 1;
+            padding: 14px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-bubble {
+            max-width: 82%;
+            padding: 10px 14px;
+            border-radius: 18px;
+            font-size: 12.5px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .chat-bubble.bot {
+            background: rgba(255, 255, 255, 0.95);
+            color: #1a1a1a;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .chat-bubble.user {
+            background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow));
+            color: #ffffff;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .ai-chat-footer {
+            display: flex;
+            padding: 10px 12px;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ai-chat-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 8px 14px;
+            font-size: 12px;
+            color: white;
+            outline: none;
+        }
+
+        .ai-chat-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .ai-chat-btn {
+            background: var(--primary-glow);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .ai-chat-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .ai-chat-trigger {
+            position: fixed;
+            bottom: 24px;
+            right: 20px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow));
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 25px var(--primary-glow);
+            cursor: pointer;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .ai-chat-trigger:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .chat-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: #00ff88;
+            color: #000;
+            font-size: 11px;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px #00ff88;
+        }
+    </style>
+</head>
+<body class="theme-galaxy relative">
+
+    <canvas id="bgCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+    <canvas id="fireworksCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-40"></canvas>
+
+    <header class="fixed top-4 left-0 right-0 z-50 px-4 max-w-5xl mx-auto flex justify-between items-center">
+        <!-- Brand/Status -->
+        <div class="glass-card px-4 py-2 flex items-center gap-2 border-pink-500/30">
+            <span class="w-3 h-3 rounded-full bg-pink-500 animate-ping"></span>
+            <span class="font-serif-royal text-xs md:text-sm font-semibold tracking-widest text-pink-300 uppercase">HBD MY EVERYTHING ❤️</span>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex items-center gap-2">
+            <!-- Theme Toggle Menu Button -->
+            <div class="relative group">
+                <button id="themeMenuBtn" class="glass-btn p-3 rounded-full text-white shadow-lg flex items-center justify-center">
+                    <i class="fa-solid fa-palette text-lg"></i>
+                </button>
+                <div id="themeDropdown" class="hidden absolute right-0 mt-2 w-48 glass-card p-2 shadow-2xl flex-col gap-1 z-50">
+                    <button onclick="setTheme('galaxy')" class="w-full text-left px-3 py-2 rounded-xl text-xs flex items-center justify-between hover:bg-white/10 text-purple-300">
+                        <span>🌌 Galaxy Stars</span>
+                    </button>
+                    <button onclick="setTheme('rose')" class="w-full text-left px-3 py-2 rounded-xl text-xs flex items-center justify-between hover:bg-white/10 text-pink-300">
+                        <span>🌸 Romantic Rose</span>
+                    </button>
+                    <button onclick="setTheme('gold')" class="w-full text-left px-3 py-2 rounded-xl text-xs flex items-center justify-between hover:bg-white/10 text-yellow-300">
+                        <span>👑 Golden Luxury</span>
+                    </button>
+                    <button onclick="setTheme('cyberpunk')" class="w-full text-left px-3 py-2 rounded-xl text-xs flex items-center justify-between hover:bg-white/10 text-cyan-300">
+                        <span>⚡ Cyber Neon</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Audio Player Button & Bar -->
+            <div class="glass-card px-3 py-1.5 flex items-center gap-3">
+                <button id="playAudioBtn" class="w-8 h-8 rounded-full bg-pink-500 text-white flex items-center justify-center hover:scale-110 transition">
+                    <i id="playIcon" class="fa-solid fa-play text-xs"></i>
+                </button>
+                <!-- Visualizer Bars -->
+                <div id="visualizer" class="flex items-end gap-1 h-6 opacity-50">
+                    <span class="w-1 bg-pink-400 rounded-full bar-anim" style="animation-delay: 0.1s"></span>
+                    <span class="w-1 bg-purple-400 rounded-full bar-anim" style="animation-delay: 0.3s"></span>
+                    <span class="w-1 bg-pink-300 rounded-full bar-anim" style="animation-delay: 0.2s"></span>
+                    <span class="w-1 bg-yellow-300 rounded-full bar-anim" style="animation-delay: 0.4s"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hidden Audio Tag -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- MAIN CONTAINER -->
+    <main class="relative z-10 max-w-4xl mx-auto px-4 pt-24 pb-20 space-y-16">
+
+        <section class="text-center py-12 flex flex-col items-center justify-center min-h-[75vh] relative">
+            <div class="inline-block glass-card px-6 py-2 rounded-full mb-6 border-pink-500/40 animate-bounce">
+                <span class="text-xs md:text-sm text-pink-300 font-semibold tracking-wider">🎉 SPECIAL BIRTHDAY EDITION 🎉</span>
+            </div>
+            
+            <h1 class="font-serif-royal text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4 text-glow bg-clip-text text-transparent bg-gradient-to-r from-pink-300 via-rose-100 to-purple-300">
+                Selamat Ulang Tahun, <br/>
+                <span class="font-cursive text-5xl sm:text-7xl md:text-8xl text-pink-400">Bidadari Cantikku ✨</span>
+            </h1>
+
+            <p class="max-w-xl text-base sm:text-lg text-gray-300 font-light leading-relaxed mb-8 px-4">
+                Hari ini adalah hari paling istimewa di mana dunia disinari oleh senyumanmu. Terima kasih telah hadir dan mewarnai hidupku dengan cinta tak terhingga.
+            </p>
+
+            <!-- Interactive Countdown Timer to Special Moment -->
+            <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-md w-full mb-10">
+                <div class="glass-card p-3 text-center">
+                    <span id="cdDays" class="text-2xl sm:text-3xl font-bold text-pink-400 font-serif-royal">00</span>
+                    <span class="block text-[10px] sm:text-xs text-gray-400 uppercase tracking-widest mt-1">Hari</span>
+                </div>
+                <div class="glass-card p-3 text-center">
+                    <span id="cdHours" class="text-2xl sm:text-3xl font-bold text-pink-400 font-serif-royal">00</span>
+                    <span class="block text-[10px] sm:text-xs text-gray-400 uppercase tracking-widest mt-1">Jam</span>
+                </div>
+                <div class="glass-card p-3 text-center">
+                    <span id="cdMins" class="text-2xl sm:text-3xl font-bold text-pink-400 font-serif-royal">00</span>
+                    <span class="block text-[10px] sm:text-xs text-gray-400 uppercase tracking-widest mt-1">Menit</span>
+                </div>
+                <div class="glass-card p-3 text-center">
+                    <span id="cdSecs" class="text-2xl sm:text-3xl font-bold text-pink-400 font-serif-royal">00</span>
+                    <span class="block text-[10px] sm:text-xs text-gray-400 uppercase tracking-widest mt-1">Detik</span>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="flex flex-col items-center opacity-80 hover:opacity-100 transition cursor-pointer" onclick="scrollToSection('cakeSection')">
+                <span class="text-xs text-gray-400 mb-2 tracking-widest">JELAJAHI KEJUTAN</span>
+                <i class="fa-solid fa-chevron-down text-pink-400 animate-bounce"></i>
+            </div>
+        </section>
+
+
+        <section id="cakeSection" class="glass-card p-6 md:p-10 text-center glow-box relative overflow-hidden">
+            <h2 class="font-serif-royal text-2xl md:text-3xl font-bold text-pink-300 mb-2">🎂 Tiup Lilin Ulang Tahunmu</h2>
+            <p class="text-sm text-gray-300 mb-8">Klik tombol atau <b>tiup mikrofon</b> HP-mu untuk memadamkan lilin dan buat permohonan!</p>
+
+            <!-- 3D Interactive Cake Container -->
+            <div class="relative w-48 h-48 sm:w-60 sm:h-60 mx-auto mb-8 flex flex-col items-center justify-end">
+                
+                <!-- Candles -->
+                <div class="absolute top-2 flex justify-center items-center gap-6 z-20">
+                    <div class="relative flex flex-col items-center">
+                        <div id="flame1" class="flame w-4 h-6 mb-1"></div>
+                        <div class="w-3 h-12 bg-gradient-to-b from-yellow-200 to-pink-400 rounded-t-sm shadow-md"></div>
+                    </div>
+                    <div class="relative flex flex-col items-center">
+                        <div id="flame2" class="flame w-4 h-6 mb-1"></div>
+                        <div class="w-3 h-14 bg-gradient-to-b from-blue-200 to-purple-400 rounded-t-sm shadow-md"></div>
+                    </div>
+                    <div class="relative flex flex-col items-center">
+                        <div id="flame3" class="flame w-4 h-6 mb-1"></div>
+                        <div class="w-3 h-12 bg-gradient-to-b from-pink-200 to-rose-400 rounded-t-sm shadow-md"></div>
+                    </div>
+                </div>
+
+                <!-- Cake Layers -->
+                <div class="w-36 h-12 bg-gradient-to-r from-pink-400 via-rose-300 to-pink-400 rounded-t-2xl shadow-lg border-b-4 border-pink-500/50 relative z-10 flex items-center justify-around px-2">
+                    <span class="text-xs">🍓</span><span class="text-xs">✨</span><span class="text-xs">🍓</span>
+                </div>
+                <div class="w-48 h-14 bg-gradient-to-r from-purple-500 via-pink-400 to-purple-500 rounded-t-xl shadow-md border-b-4 border-purple-600/50 flex items-center justify-around px-4">
+                    <span class="text-xs">🍫</span><span class="text-xs">💖</span><span class="text-xs">🍫</span>
+                </div>
+                <div class="w-60 h-16 bg-gradient-to-r from-yellow-600 via-amber-400 to-yellow-600 rounded-t-xl shadow-2xl flex items-center justify-center border-b-8 border-yellow-700">
+                    <span class="text-xs font-serif-royal font-bold text-yellow-950 tracking-wider">SELAMAT ULANG TAHUN</span>
+                </div>
+                <!-- Plate -->
+                <div class="w-64 h-4 bg-white/40 rounded-full backdrop-blur-md shadow-2xl"></div>
+            </div>
+
+            <!-- Blow Button Controls -->
+            <div class="flex flex-wrap justify-center gap-4">
+                <button id="blowBtn" onclick="blowOutCandles()" class="glass-btn px-6 py-3 rounded-full text-sm font-semibold text-pink-200 flex items-center gap-2">
+                    <i class="fa-solid fa-wind text-pink-400"></i> Tiup Lilin Sekarang!
+                </button>
+                <button id="micBtn" onclick="toggleMicBlow()" class="glass-btn px-6 py-3 rounded-full text-sm font-semibold text-purple-200 flex items-center gap-2">
+                    <i class="fa-solid fa-microphone text-purple-400"></i> Aktifkan Deteksi Tiupan Suara
+                </button>
+            </div>
+            <p id="micStatus" class="text-xs text-pink-400 mt-3 hidden">🎙️ Mikrofon aktif! Coba tiup ke mikrofon HP-mu...</p>
+        </section>
+
+
+        <section class="glass-card p-6 md:p-10 relative">
+            <div class="flex items-center justify-between mb-6 border-b border-white/10 pb-4">
+                <h2 class="font-serif-royal text-xl md:text-2xl font-bold text-pink-300 flex items-center gap-2">
+                    <i class="fa-solid fa-envelope-open-text text-pink-400"></i> Surat Cinta Untukmu
+                </h2>
+                <button onclick="restartTypewriter()" class="text-xs text-gray-400 hover:text-white transition flex items-center gap-1">
+                    <i class="fa-solid fa-rotate-right"></i> Baca Ulang
+                </button>
+            </div>
+
+            <div class="min-h-[160px] text-gray-200 text-sm md:text-base leading-relaxed font-light tracking-wide italic font-cursive text-xl md:text-2xl" id="loveLetterContent">
+                <!-- Text populated via JavaScript -->
+            </div>
+
+            <div class="mt-6 flex justify-end">
+                <span class="text-xs text-pink-300 font-serif-royal tracking-widest border-b border-pink-400/30 pb-1">~ Dari Seseorang Yang Selalu Mencintaimu ❤️</span>
+            </div>
+        </section>
+
+
+        <section class="space-y-6">
+            <div class="text-center">
+                <h2 class="font-serif-royal text-2xl md:text-3xl font-bold text-pink-300">📸 Galeri Kenangan Indah Kita</h2>
+                <p class="text-xs sm:text-sm text-gray-400 mt-1">Sentuh / Klik kartu untuk melihat pesan dibalik momen kenangan!</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="h-72 perspective-1000 cursor-pointer" onclick="flipCard(this)">
+                    <div class="relative w-full h-full preserve-3d glass-card p-2 rounded-2xl">
+                        <!-- Front -->
+                        <div class="absolute inset-0 w-full h-full rounded-2xl overflow-hidden backface-hidden flex flex-col justify-end p-4 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=800&auto=format&fit=crop');">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                            <span class="relative z-10 font-serif-royal text-sm font-semibold text-pink-200">Awal Pertemuan Kita ✨</span>
+                            <span class="relative z-10 text-[10px] text-gray-300">Klik untuk membalik</span>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute inset-0 w-full h-full rounded-2xl bg-purple-900/90 backdrop-blur-md p-6 flex flex-col justify-center items-center text-center rotate-y-180 backface-hidden border border-pink-400/30">
+                            <i class="fa-solid fa-heart text-3xl text-pink-400 mb-3 animate-pulse"></i>
+                            <h3 class="font-serif-royal text-base font-bold text-pink-200 mb-2">Saat Senyummu Mengubah Segalanya</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed">Sejak hari pertama kita bertemu, aku tahu bahwa hatiku telah menemukan rumah impiannya.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="h-72 perspective-1000 cursor-pointer" onclick="flipCard(this)">
+                    <div class="relative w-full h-full preserve-3d glass-card p-2 rounded-2xl">
+                        <!-- Front -->
+                        <div class="absolute inset-0 w-full h-full rounded-2xl overflow-hidden backface-hidden flex flex-col justify-end p-4 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=800&auto=format&fit=crop');">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                            <span class="relative z-10 font-serif-royal text-sm font-semibold text-pink-200">Setiap Momen Bersamamu 🌹</span>
+                            <span class="relative z-10 text-[10px] text-gray-300">Klik untuk membalik</span>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute inset-0 w-full h-full rounded-2xl bg-pink-900/90 backdrop-blur-md p-6 flex flex-col justify-center items-center text-center rotate-y-180 backface-hidden border border-pink-400/30">
+                            <i class="fa-solid fa-star text-3xl text-yellow-300 mb-3 animate-pulse"></i>
+                            <h3 class="font-serif-royal text-base font-bold text-yellow-200 mb-2">Tawa & Canda</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed">Tidak ada tempat yang lebih hangat di dunia ini selain berada di sampingmu saat kita tertawa bersama.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="h-72 perspective-1000 cursor-pointer" onclick="flipCard(this)">
+                    <div class="relative w-full h-full preserve-3d glass-card p-2 rounded-2xl">
+                        <!-- Front -->
+                        <div class="absolute inset-0 w-full h-full rounded-2xl overflow-hidden backface-hidden flex flex-col justify-end p-4 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=800&auto=format&fit=crop');">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                            <span class="relative z-10 font-serif-royal text-sm font-semibold text-pink-200">Masa Depan Bersama 💍</span>
+                            <span class="relative z-10 text-[10px] text-gray-300">Klik untuk membalik</span>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute inset-0 w-full h-full rounded-2xl bg-indigo-900/90 backdrop-blur-md p-6 flex flex-col justify-center items-center text-center rotate-y-180 backface-hidden border border-pink-400/30">
+                            <i class="fa-solid fa-infinity text-3xl text-cyan-300 mb-3 animate-pulse"></i>
+                            <h3 class="font-serif-royal text-base font-bold text-cyan-200 mb-2">Selamanya & Lebih</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed">Aku berjanji akan terus menggenggam tanganmu melintasi setiap tahun dan usia yang bertambah.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Love Calculator Widget -->
+            <div class="glass-card p-6 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-serif-royal text-xl font-bold text-pink-300 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-calculator text-pink-400"></i> Love Compatibility Test
+                    </h3>
+                    <p class="text-xs text-gray-300 mb-4">Cek sejauh mana tingkat kecocokan takdir cinta kita hari ini!</p>
+                    
+                    <div class="space-y-3">
+                        <input type="text" id="name1" value="Kamu (Si Cantik)" class="w-full bg-black/30 border border-white/20 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-pink-400" readonly>
+                        <input type="text" id="name2" value="Aku (Yang Mencintaimu)" class="w-full bg-black/30 border border-white/20 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-pink-400" readonly>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <button onclick="calculateLove()" class="w-full glass-btn py-3 rounded-xl font-semibold text-xs text-pink-200">
+                        Hitung Kecocokan Cinta ❤
+                    </button>
+                    <div id="loveResult" class="mt-4 hidden animate-fade-in">
+                        <span id="lovePercent" class="text-4xl font-bold font-serif-royal text-pink-400 text-glow">99.9%</span>
+                        <p id="loveDesc" class="text-xs text-gray-200 mt-1">Takdir Sejati! Kalian diciptakan untuk bahagia selamanya!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Surprise Gift Box Widget -->
+            <div class="glass-card p-6 text-center flex flex-col items-center justify-between">
+                <div>
+                    <h3 class="font-serif-royal text-xl font-bold text-pink-300 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-gift text-pink-400"></i> Kotak Kejutan Kado
+                    </h3>
+                    <p class="text-xs text-gray-300 mb-4">Buka kado spesial ulang tahunmu dengan mengetuk kado di bawah!</p>
+                </div>
+
+                <div id="giftBox" onclick="openGift()" class="my-4 cursor-pointer animate-float transition transform hover:scale-110">
+                    <div class="text-7xl">🎁</div>
+                </div>
+
+                <div id="giftMessage" class="hidden text-xs bg-pink-500/20 p-3 rounded-xl border border-pink-400/30 text-pink-200">
+                    🎉 <b>Selamat Sayang!</b> Kamu berhak mendapatkan pelukan hangat, cinta tanpa batas, dan traktiran spesial hari ini! 💕
+                </div>
+            </div>
+        </section>
+
+
+        <section class="glass-card p-8 text-center glow-box">
+            <h2 class="font-serif-royal text-2xl sm:text-3xl font-bold text-pink-300 mb-3">
+                💌 Kirim Pesan / Jawaban ke WhatsApp-ku
+            </h2>
+            <p class="text-sm text-gray-300 max-w-lg mx-auto mb-6 leading-relaxed">
+                Sudah selesai melihat semua kejutannya? Sentuh tombol di bawah untuk langsung mengirimkan pesan balasan manis ke WhatsApp-ku!
+            </p>
+
+            <a id="waBtn" href="https://wa.me/6288228736440?text=Makasih%20banyak%20ya%20sayang%20buat%20web%20ultah%20mewah%20dan%20romantisnya!%20Aku%20suka%20banget,%20I%20love%20you%20so%20much!%20%E2%9D%A4%EF%B8%8F%E2%9C%A8" target="_blank" class="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-8 py-4 rounded-full text-base shadow-xl transition transform hover:scale-105">
+                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                <span>Balas Pesan via WhatsApp (088228736440)</span>
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 text-center py-6 border-t border-white/10 text-xs text-gray-400">
+        Made with Unlimited Love & Sparkles for My Queen ❤️ • 2026
+    </footer>
+
+    <!-- AI CHATBOT INTERACTIVE WIDGET -->
+    <div id="aiChatWindow" class="ai-chat-window hidden-chat">
+        <div class="ai-chat-header">
+            <div class="flex items-center gap-3">
+                <div class="relative text-2xl">
+                    🤖
+                    <span class="w-2.5 h-2.5 bg-green-400 rounded-full absolute bottom-0 right-0 border border-black"></span>
+                </div>
+                <div>
+                    <h4 class="font-serif-royal text-xs font-bold text-white tracking-wider">AI Pendamping Cinta</h4>
+                    <p class="text-[10px] text-pink-200 opacity-80">Selalu ada untukmu ✨</p>
+                </div>
+            </div>
+            <button onclick="toggleAiChat()" class="text-white hover:text-pink-300 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div id="aiChatBody" class="ai-chat-body"></div>
+
+        <div class="ai-chat-footer">
+            <input type="text" id="aiChatInput" class="ai-chat-input" placeholder="Ketik pesan..." onkeypress="handleAiKeyPress(event)">
+            <button onclick="sendAiMessage()" class="ai-chat-btn">
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- AI CHAT LAUNCHER BUTTON -->
+    <button id="aiChatTrigger" class="ai-chat-trigger" onclick="toggleAiChat()">
+        <i class="fa-solid fa-comment-dots"></i>
+        <span id="aiBadge" class="chat-badge">1</span>
+    </button>
+
+
+    <script>
+        /* -------------------------------------------------------------
+         * 1. BACKGROUND CANVAS PARTICLES & STAR SYSTEM
+         * ------------------------------------------------------------- */
+        const bgCanvas = document.getElementById('bgCanvas');
+        const ctx = bgCanvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null };
+
+        function resizeCanvas() {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+            createHeartParticle(e.x, e.y);
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouse.x = e.touches[0].clientX;
+                mouse.y = e.touches[0].clientY;
+                createHeartParticle(mouse.x, mouse.y);
+            }
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * bgCanvas.width;
+                this.y = Math.random() * bgCanvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.opacity = Math.random() * 0.8 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > bgCanvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > bgCanvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 182, 193, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Floating Interactive Hearts Trail
+        let heartsTrail = [];
+        function createHeartParticle(x, y) {
+            heartsTrail.push({
+                x: x,
+                y: y,
+                size: Math.random() * 12 + 8,
+                opacity: 1,
+                speedY: Math.random() * -2 - 1,
+                speedX: (Math.random() - 0.5) * 1.5,
+                symbol: ['❤️', '💖', '✨', '🌸'][Math.floor(Math.random() * 4)]
+            });
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 70; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateBg() {
+            ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            for (let i = heartsTrail.length - 1; i >= 0; i--) {
+                let h = heartsTrail[i];
+                h.y += h.speedY;
+                h.x += h.speedX;
+                h.opacity -= 0.02;
+
+                ctx.font = `${h.size}px serif`;
+                ctx.globalAlpha = Math.max(h.opacity, 0);
+                ctx.fillText(h.symbol, h.x, h.y);
+                ctx.globalAlpha = 1.0;
+
+                if (h.opacity <= 0) {
+                    heartsTrail.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(animateBg);
+        }
+        animateBg();
+
+        /* -------------------------------------------------------------
+         * 2. THEME SWITCHER LOGIC
+         * ------------------------------------------------------------- */
+        const themeMenuBtn = document.getElementById('themeMenuBtn');
+        const themeDropdown = document.getElementById('themeDropdown');
+
+        themeMenuBtn.addEventListener('click', () => {
+            themeDropdown.classList.toggle('hidden');
+            themeDropdown.classList.toggle('flex');
+        });
+
+        function setTheme(themeName) {
+            document.body.className = `theme-${themeName} relative`;
+            themeDropdown.classList.add('hidden');
+            themeDropdown.classList.remove('flex');
+        }
+
+        /* -------------------------------------------------------------
+         * 3. AUDIO PLAYER LOGIC
+         * ------------------------------------------------------------- */
+        const bgMusic = document.getElementById('bgMusic');
+        const playAudioBtn = document.getElementById('playAudioBtn');
+        const playIcon = document.getElementById('playIcon');
+        const visualizer = document.getElementById('visualizer');
+        let isPlaying = false;
+
+        playAudioBtn.addEventListener('click', toggleAudio);
+
+        function toggleAudio() {
+            if (isPlaying) {
+                bgMusic.pause();
+                playIcon.className = 'fa-solid fa-play text-xs';
+                visualizer.style.opacity = '0.3';
+                isPlaying = false;
+            } else {
+                bgMusic.play().then(() => {
+                    playIcon.className = 'fa-solid fa-pause text-xs';
+                    visualizer.style.opacity = '1';
+                    isPlaying = true;
+                }).catch(err => {
+                    console.log("Audio play blocked/failed:", err);
+                    playIcon.className = 'fa-solid fa-pause text-xs';
+                    isPlaying = true;
+                });
+            }
+        }
+
+        document.body.addEventListener('click', function autoPlayOnce() {
+            if (!isPlaying) {
+                toggleAudio();
+            }
+            document.body.removeEventListener('click', autoPlayOnce);
+        }, { once: true });
+
+        /* -------------------------------------------------------------
+         * 4. COUNTDOWN TIMER
+         * ------------------------------------------------------------- */
+        function updateCountdown() {
+            const now = new Date();
+            const cdDays = document.getElementById('cdDays');
+            const cdHours = document.getElementById('cdHours');
+            const cdMins = document.getElementById('cdMins');
+            const cdSecs = document.getElementById('cdSecs');
+
+            cdDays.innerText = '00';
+            cdHours.innerText = String(now.getHours()).padStart(2, '0');
+            cdMins.innerText = String(now.getMinutes()).padStart(2, '0');
+            cdSecs.innerText = String(now.getSeconds()).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        /* -------------------------------------------------------------
+         * 5. TYPEWRITER LOVE LETTER ENGINE
+         * ------------------------------------------------------------- */
+        const letterText = "Selamat ulang tahun untuk sosok yang selalu membuat hari-hariku penuh warna dan tawa! 🎉💖 Terima kasih telah menjadi alasan di balik senyumku setiap hari. Semoga di usiamu yang baru ini, semua impian indahmu terwujud, selalu diberikan kesehatan, kebahagiaan tak terhingga, dan cinta yang kian bertambah. Aku akan selalu ada di sampingmu untuk mendukung dan mencintaimu selamanya!";
+        const loveLetterContent = document.getElementById('loveLetterContent');
+        let letterIdx = 0;
+
+        function typeWriter() {
+            if (letterIdx < letterText.length) {
+                loveLetterContent.innerHTML += letterText.charAt(letterIdx);
+                letterIdx++;
+                setTimeout(typeWriter, 40);
+            }
+        }
+
+        function restartTypewriter() {
+            loveLetterContent.innerHTML = '';
+            letterIdx = 0;
+            typeWriter();
+        }
+        typeWriter();
+
+        /* -------------------------------------------------------------
+         * 6. CANDLE BLOW OUT & MICROPHONE AUDIO DETECTION LOGIC
+         * ------------------------------------------------------------- */
+        let candlesBlown = false;
+
+        function blowOutCandles() {
+            if (candlesBlown) return;
+            candlesBlown = true;
+
+            document.getElementById('flame1').style.display = 'none';
+            document.getElementById('flame2').style.display = 'none';
+            document.getElementById('flame3').style.display = 'none';
+
+            triggerFireworks();
+            confetti({
+                particleCount: 150,
+                spread: 90,
+                origin: { y: 0.6 }
+            });
+
+            alert("🎉 YAY! Lilin berhasil ditiup! Semoga semua permohonan dan doamu terkabul, Sayang! ❤️✨");
+        }
+
+        // Microphone Audio Detection Engine for Real Blowing
+        function toggleMicBlow() {
+            const micStatus = document.getElementById('micStatus');
+            micStatus.classList.remove('hidden');
+
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(stream => {
+                        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                        const analyser = audioContext.createAnalyser();
+                        const microphone = audioContext.createMediaStreamSource(stream);
+                        microphone.connect(analyser);
+                        analyser.fftSize = 256;
+
+                        const bufferLength = analyser.frequencyBinCount;
+                        const dataArray = new Uint8Array(bufferLength);
+
+                        function checkBlow() {
+                            analyser.getByteFrequencyData(dataArray);
+                            let sum = 0;
+                            for (let i = 0; i < bufferLength; i++) {
+                                sum += dataArray[i];
+                            }
+                            let average = sum / bufferLength;
+
+                            // Sensitivity threshold for blow detection
+                            if (average > 60 && !candlesBlown) {
+                                blowOutCandles();
+                                stream.getTracks().forEach(track => track.stop());
+                                micStatus.innerText = "✨ Tiupan suara terdeteksi! Lilin telah padam!";
+                            } else if (!candlesBlown) {
+                                requestAnimationFrame(checkBlow);
+                            }
+                        }
+                        checkBlow();
+                    })
+                    .catch(err => {
+                        micStatus.innerText = "❌ Tidak dapat mengakses mikrofon. Silakan gunakan tombol tiup di atas.";
+                    });
+            } else {
+                micStatus.innerText = "❌ Fitur mikrofon tidak didukung di browser ini.";
+            }
+        }
+
+        /* -------------------------------------------------------------
+         * 7. FIREWORKS CANVAS LOGIC
+         * ------------------------------------------------------------- */
+        const fwCanvas = document.getElementById('fireworksCanvas');
+        const fwCtx = fwCanvas.getContext('2d');
+        let fireworks = [];
+
+        function resizeFwCanvas() {
+            fwCanvas.width = window.innerWidth;
+            fwCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeFwCanvas);
+        resizeFwCanvas();
+
+        function triggerFireworks() {
+            for (let i = 0; i < 12; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * fwCanvas.width;
+                    const y = Math.random() * (fwCanvas.height * 0.5);
+                    const color = `hsl(${Math.random() * 360}, 100%, 65%)`;
+                    for (let p = 0; p < 40; p++) {
+                        fireworks.push({
+                            x: x,
+                            y: y,
+                            vx: (Math.random() - 0.5) * 8,
+                            vy: (Math.random() - 0.5) * 8,
+                            alpha: 1,
+                            color: color
+                        });
+                    }
+                }, i * 250);
+            }
+        }
+
+        function animateFireworks() {
+            fwCtx.clearRect(0, 0, fwCanvas.width, fwCanvas.height);
+            for (let i = fireworks.length - 1; i >= 0; i--) {
+                let f = fireworks[i];
+                f.x += f.vx;
+                f.y += f.vy;
+                f.alpha -= 0.015;
+
+                fwCtx.fillStyle = f.color;
+                fwCtx.globalAlpha = Math.max(f.alpha, 0);
+                fwCtx.beginPath();
+                fwCtx.arc(f.x, f.y, 3, 0, Math.PI * 2);
+                fwCtx.fill();
+                fwCtx.globalAlpha = 1.0;
+
+                if (f.alpha <= 0) {
+                    fireworks.splice(i, 1);
+                }
+            }
+            requestAnimationFrame(animateFireworks);
+        }
+        animateFireworks();
+
+        /* -------------------------------------------------------------
+         * 8. CARD FLIP & MINI GAMES LOGIC
+         * ------------------------------------------------------------- */
+        function flipCard(cardElem) {
+            const inner = cardElem.querySelector('.preserve-3d');
+            inner.classList.toggle('flipped');
+        }
+
+        function calculateLove() {
+            const res = document.getElementById('loveResult');
+            res.classList.remove('hidden');
+            confetti({ particleCount: 50, spread: 60 });
+        }
+
+        function openGift() {
+            const giftBox = document.getElementById('giftBox');
+            const giftMessage = document.getElementById('giftMessage');
+            giftBox.innerHTML = '💖';
+            giftMessage.classList.remove('hidden');
+            confetti({ particleCount: 100, spread: 80 });
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        /* -------------------------------------------------------------
+         * 9. AI CHATBOT INTERACTIVE ENGINE
+         * ------------------------------------------------------------- */
+        const aiReplies = {
+          "halo": "Halo manis! Selamat datang di web ulang tahun megah ini ❤️ Ada yang bisa aku bantu?",
+          "hi": "Hai sayang! Selamat ulang tahun ya! Semoga harimu penuh tawa dan kebahagiaan ✨",
+          "siapa kamu": "Aku adalah AI Pendamping Cinta yang diciptakan khusus untuk menemani kamu di web ultah istimewa ini!",
+          "terima kasih": "Sama-sama sayang! Nikmati semua kejutan dan lagu romantis di web ini ya 🥰",
+          "makasih": "Sama-sama manis! Coba tiup lilinnya atau buka kado kejutannya ya ❤️",
+          "default": "Wah seru banget! Jangan lupa coba tiup lilin kue, buka kado kejutan, atau balas pesan via WhatsApp di bawah ya! 🥰✨"
+        };
+
+        function toggleAiChat() {
+            const win = document.getElementById('aiChatWindow');
+            win.classList.toggle('hidden-chat');
+            const badge = document.getElementById('aiBadge');
+            if (badge) badge.style.display = 'none';
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                addBotBubble("Hai Bidadari Cantik! 🎉 Selamat ulang tahun! Aku AI pendampingmu di sini. Putar musiknya, tiup lilinnya, dan jelajahi semua kejutan mewahnya ya! ✨");
+            }, 1200);
+        });
+
+        function addBotBubble(text) {
+            const body = document.getElementById('aiChatBody');
+            const div = document.createElement('div');
+            div.className = 'chat-bubble bot';
+            div.innerText = text;
+            body.appendChild(div);
+            body.scrollTop = body.scrollHeight;
+        }
+
+        function addUserBubble(text) {
+            const body = document.getElementById('aiChatBody');
+            const div = document.createElement('div');
+            div.className = 'chat-bubble user';
+            div.innerText = text;
+            body.appendChild(div);
+            body.scrollTop = body.scrollHeight;
+        }
+
+        function sendAiMessage() {
+            const input = document.getElementById('aiChatInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            addUserBubble(text);
+            input.value = '';
+
+            setTimeout(() => {
+                const lower = text.toLowerCase();
+                let reply = aiReplies["default"];
+                for (let key in aiReplies) {
+                    if (lower.includes(key)) {
+                        reply = aiReplies[key];
+                        break;
+                    }
+                }
+                addBotBubble(reply);
+            }, 600);
+        }
+
+        function handleAiKeyPress(e) {
+            if (e.key === 'Enter') {
+                sendAiMessage();
+            }
+        }
+    </script>
+</body>
+</html>
